@@ -2,17 +2,19 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <title>
         Quartz
         </title>
     <link rel="stylesheet"  href= "css/jquery.mobile-1.2.0.min.css" />
         <script src="js/jquery.min.js">
+        
         </script>
+        
         <script src="js/jquery.mobile-1.2.0.min.js">
         </script>
+ <script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
+ <script src="js/quartz.js">
+ </script>
 
         <script>
             try {
@@ -24,7 +26,29 @@
   } catch (error) {
     console.error("Your javascript has an error: " + error);
   }
+  
+  
+    // Wait for PhoneGap to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is ready
+    //
+    function onDeviceReady() {
+    navigator.splashscreen.hide();
+        var db = window.openDatabase("Quartz", "1.0", "quartzdb", 1000000);
+        db.transaction(createcatDB);
+    }
+    
+    
+  
+  
+  
         </script>
+        
+        
+        
+        
     </head>
     <body>
         <!-- Home -->
@@ -34,29 +58,31 @@
                     <li data-role="list-divider" role="heading">
                     </li>
                     <li data-theme="d">
-                        <a href="#page1" data-transition="slide">
+                        <a href="categories1.html" data-transition="flip" onclick="vibrate();">
                             Categories
                         </a>
                     </li>
                     <li data-theme="d">
-                        <a href="#page1" data-transition="slide">
+                        <a href="#page1" data-transition="slide" onclick="vibrate();">
                             Workers
                         </a>
                     </li>
                     <li data-theme="d">
-                        <a href="#page1" data-transition="slide">
+                        <a href="#page1" data-transition="flip" onclick="vibrate();">
                             Roll Call
                         </a>
                     </li>
                     <li data-theme="d">
-                        <a href="#page1" data-transition="slide">
+                        <a href="#page1" data-transition="flip" onclick="vibrate();">
                             Payments
                         </a>
                     </li>
                 </ul>
-                <a data-role="button" data-theme="a" href="#page1" data-icon="gear" data-iconpos="right">
+                <a data-role="button" data-theme="a" href="#page1" data-icon="gear" data-iconpos="right" onclick="vibrate(); playBeep();">
                     Post Payments
                 </a>
+                
+           
             </div>
         </div>
     </body>

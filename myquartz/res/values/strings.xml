@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">quartz</string>
+    <string name="app_name">Quartz</string>
+       <string name="exit">Exit</string>
+       <string name="sync">Sync</string>
 </resources>
