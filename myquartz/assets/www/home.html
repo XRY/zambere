@@ -13,19 +13,11 @@
         <script src="js/jquery.mobile-1.2.0.min.js">
         </script>
  <script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
- <script src="js/quartz.js">
- </script>
+  <script type="text/javascript" charset="utf-8" src="SQLitePlugin.js"></script>
+ <script src="js/quartz.js"></script>
+   
 
         <script>
-            try {
-
-    $(function() {
-
-    });
-
-  } catch (error) {
-    console.error("Your javascript has an error: " + error);
-  }
   
   
     // Wait for PhoneGap to load
@@ -36,9 +28,21 @@
     //
     function onDeviceReady() {
     navigator.splashscreen.hide();
-        var db = window.openDatabase("Quartz", "1.0", "quartzdb", 1000000);
-        db.transaction(createcatDB);
-    }
+    
+    
+    var firstrun = window.localStorage.getItem(“runned”); 
+if ( firstrun == null ) {
+//running for the first time
+window.localStorage.setItem(“runned”, “1″); 
+createDB();
+}
+else {
+// kama kawida
+
+}
+}
+	
+	}
     
     
   
@@ -78,6 +82,8 @@
                         </a>
                     </li>
                 </ul>
+                
+               <div id="docs"></div>
                 <a data-role="button" data-theme="a" href="#page1" data-icon="gear" data-iconpos="right" onclick="vibrate(); playBeep();">
                     Post Payments
                 </a>
