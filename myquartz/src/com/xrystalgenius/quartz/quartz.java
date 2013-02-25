@@ -19,6 +19,11 @@
 
 package com.xrystalgenius.quartz;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -37,9 +42,32 @@ public class Quartz extends DroidGap
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        
+        try
+        {
+            //String pName = this.getClass().getPackage().getName();
+            //this.copy("quartz.db","/data/data/"+pName+"/databases/");
+        	File CheckDirectory;
+        	CheckDirectory = new File("quartz.db","/mnt/sdcard/Quartz/");
+        	if (!CheckDirectory.exists())
+        	{ 
+        		this.copy("quartz.db","/mnt/sdcard/Quartz/");
+        	}
+
+        	
+        	
+        }
+        catch (IOException e)
+        {
+        	e.printStackTrace();
+        }
+        
+        
+        
+        
         //super.loadUrl("file:///android_asset/www/index.html");
         super.setIntegerProperty("splashscreen", R.drawable.splash);
-        super.loadUrl("file:///android_asset/www/home.html",2000);
+        super.loadUrl("file:///android_asset/www/home.html",3500);
 
     }
    
@@ -70,6 +98,27 @@ public boolean onOptionsItemSelected(MenuItem item) {
 public void onDestroy(){
 android.os.Process.killProcess(android.os.Process.myPid());
 super.onDestroy();
+}
+
+
+
+
+void copy(String file, String folder) throws IOException {
+	File CheckDirectory;
+	CheckDirectory = new File(folder);
+	if (!CheckDirectory.exists())
+	{ 
+		CheckDirectory.mkdir();
+	}
+
+	InputStream in = getApplicationContext().getAssets().open(file);
+	OutputStream out = new FileOutputStream(folder+file);
+
+	// Transfer bytes from in to out
+	byte[] buf = new byte[1024];
+	int len; while ((len = in.read(buf)) > 0) out.write(buf, 0, len);
+	in.close(); out.close();
+
 }
 
 }

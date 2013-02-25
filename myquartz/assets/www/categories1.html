@@ -14,44 +14,24 @@
         </script>
  <script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
  <script src="js/quartz.js">
- </script>
-
-        <script>
-            try {
-
-    $(function() {
-
-    });
-
-  } catch (error) {
-    console.error("Your javascript has an error: " + error);
-  }
-  
-  
-    // Wait for PhoneGap to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    // PhoneGap is ready
-    //
-    function onDeviceReady() {
-        // Empty
-    }
-  
-  
-  
-        </script>
+ </script>   
+        
     </head>
     <body>
         <!-- Home -->
         <div data-role="page" id="page1">
+          <div data-theme="a" data-role="header">
+                <h3>
+                 Quartz
+                </h3>
+            </div>
             <div data-role="content">
                 <div data-role="collapsible-set" data-theme="a" data-content-theme="b">
                     <div data-role="collapsible">
                         <h3>
                             Add Category
                         </h3>
-                        <form id="categories" action="catsummary">
+                       
                             <div data-role="fieldcontain">
                                 <fieldset data-role="controlgroup">
                                     <label for="category">
@@ -68,8 +48,15 @@
                                     <input name="wage" id="wage"  type="number" placeholder="Daily Wage e.g. 7000" value="" type="text" />
                                 </fieldset>
                             </div>
-                            <input type="submit" data-icon="arrow-r" data-iconpos="right" value="Save" />
-                        </form>
+   
+                      
+                     
+                      
+                        <a data-role="button" data-theme="b"  data-icon="arrow-r" data-iconpos="right"  onclick="clickSave();"  id="btn_save_cat">
+                       Save 
+                        </a>
+                      
+                      
                     </div>
                 </div>
                 <div data-role="collapsible-set" data-theme="a"  data-content-theme="b">
@@ -77,17 +64,59 @@
                         <h3>
                             View Categories
                         </h3>
-                        <a data-role="button" data-theme="b" href="#page1" data-icon="arrow-l" data-iconpos="left">
+                        <a data-role="button" data-theme="b" href="#page1" data-icon="arrow-l" data-iconpos="left" id ="">
                             Back
                         </a>
                     </div>
                 </div>
             </div>
-            <div data-theme="a" data-role="footer" data-position="relative">
+          <div data-theme="a" data-role="footer" data-position="fixed">
                 <h3>
                     Xrystalgenius
                 </h3>
             </div>
         </div>
+        
+        <script type="text/javascript">
+        
+function searchProduct(tx, keyword) {
+    var kw = '%' + keyword + '%';
+    tx.executeSql("SELECT * FROM halal_product WHERE name LIKE ?", [kw], querySuccess, errorCB);
+}
+
+function querySuccess(tx, results) {
+    var len = results.rows.length;
+    console.log("DEMO table: " + len + " rows found.");
+    var list = $("<ul/>");
+    for (var i=0; i<len; i++){
+        $(list).append($("<li/>", {text:results.rows.item(i).name + " Expired: " + results.rows.item(i).expired}));
+    }
+
+    if (len === 0) {
+        $(list).append($("<li/>", {text: "Tiada keputusan ditemui"}));
+    }
+
+    $("#search-result").empty();
+    list.appendTo("#search-result");
+}
+
+function errorCB(err) {
+    alert("Error processing SQL: "+err.code);
+}
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+ var db = window.sqlitePlugin.openDatabase({name: "/mnt/sdcard/Quartz/quartz"});
+	$('#btn_save_cat').click(function() {
+	alert('Click');
+         
+	});
+}
+function alertDismissed() {
+    // do something
+}
+</script>
+        
+        
     </body>
 </html>
