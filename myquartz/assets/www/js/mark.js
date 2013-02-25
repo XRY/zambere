@@ -26,7 +26,7 @@
    function queryDb()
   	{
   	
-  	var db = window.sqlitePlugin.openDatabase({name: "Quartz"});
+      var db = window.sqlitePlugin.openDatabase({name: "/mnt/sdcard/Quartz/quartz"});
   	db.transaction(returnEmplyees, errorCB);
   	document.getElementById("demo").innerHTML=employees[x];
   	flags = new Array(4);
