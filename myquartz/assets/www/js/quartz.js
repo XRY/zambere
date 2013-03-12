@@ -45,9 +45,9 @@
   {
   
   
-     var db = window.sqlitePlugin.openDatabase({name: "/mnt/sdcard/Quartz/quartz"});
+    // var db = window.sqlitePlugin.openDatabase({name: "/mnt/sdcard/Quartz/quartz"});
  	//db.transaction(testTx2, errorCB);   
-	 
+	  var db = window.sqlitePlugin.openDatabase({name: "quartz"});
  }
 
 
@@ -150,7 +150,8 @@ function getVar(name)
    function queryDb()
   	{
   	
-      var db = window.sqlitePlugin.openDatabase({name: "/mnt/sdcard/Quartz/quartz"});
+      //var db = window.sqlitePlugin.openDatabase({name: "/mnt/sdcard/Quartz/quartz"});
+       var db = window.sqlitePlugin.openDatabase({name: "quartz"});
   	db.transaction(returnEmplyees, errorCB);
   	document.getElementById("demo").innerHTML=employees[x];
   	flags = new Array(4);

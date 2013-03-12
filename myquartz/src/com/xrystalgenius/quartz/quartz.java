@@ -45,14 +45,14 @@ public class Quartz extends DroidGap
         
         try
         {
-            //String pName = this.getClass().getPackage().getName();
-            //this.copy("quartz.db","/data/data/"+pName+"/databases/");
-        	File CheckDirectory;
+            String pName = this.getClass().getPackage().getName();
+            this.copy("quartz.db","/data/data/"+pName+"/databases/");
+        	/*File CheckDirectory;
         	CheckDirectory = new File("quartz.db","/mnt/sdcard/Quartz/");
         	if (!CheckDirectory.exists())
         	{ 
         		this.copy("quartz.db","/mnt/sdcard/Quartz/");
-        	}
+        	} */
 
         	
         	
