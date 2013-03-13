@@ -18,13 +18,7 @@
  <script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
   <script type="text/javascript" charset="utf-8" src="SQLitePlugin.js"></script>
  <script src="js/quartz.js"></script>
-        <script type="text/javascript">
-		    document.addEventListener("deviceready", onDeviceReady, false);
-		    // PhoneGap is ready
-		    function onDeviceReady() {
-				queryDb();
-			}
-        </script>
+       
     </head>
     <body>
         <!-- Home -->
@@ -46,7 +40,7 @@
                 <a data-role="button" data-inline="true" data-theme="b" href="#" data-icon="minus" data-iconpos="left" onclick="queryDb3();">
                     Absent
                 </a>
-                <a id="return_btn" data-role="button" data-theme="d" href="#page1">
+                <a id="return_btn" data-role="button" data-theme="d" href="home.html" onclick="doInsertion()">
                     Done
                 </a>
             </div>
