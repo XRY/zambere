@@ -7,6 +7,7 @@
 	var employeeid;
 	var flags;
 	var x = 0;
+	var submitions;
  function vibrate() {// vibrate for 50 micro seconds
         navigator.notification.vibrate(50);
         
@@ -135,6 +136,30 @@
     	var db = window.sqlitePlugin.openDatabase({name: "quartz"});
     	db.transaction(insertWorkers);
     	//db.transaction(testDbEntries, errorCB);
+    	x = 0;
+    }
+    
+    function checkInsertion()
+    {
+    	var db = window.sqlitePlugin.openDatabase({name: "quartz"});
+    	db.transaction(confirmDbEntries, errorCB);
+    	
+    	/*var htmlString = "<p>";
+    	for(var t=0; t<submitions.length; t++){
+    	htmlString = htmlString + "<p>"+ submitions[t] +"</p>"
+    	//'<h>'+submitions[t]; +'</h>'
+    	//document.getElementById("demo2").innerHTML=submitions[1];
+    	}
+    	htmlString = htmlString + "</p>";
+    	$('demo2').html(htmlString);
+    	*/
+    	//document.getElementById("demo2").innerHTML=submitions[1];
+    	var output;
+    	for(var n = 0; n < submitions.length; n++){
+    	alert(submitions[n]);
+    		output += '<p>'+submitions[n]+'</p>';
+    	}
+    	document.body.innerHTML = output;
     }
     
     function insertWorkers(tx)
@@ -147,25 +172,43 @@
   		var completeDate = day +"/"+ month +"/" + year;
   		//alert(completeDate);
     	//tx.executeSql('CREATE TABLE IF NOT EXISTS attendence (id integer primary key autoincrement not null unique, date text, morning integer, afternoon integer)');
-    	tx.executeSql('CREATE TABLE IF NOT EXISTS attendance (id integer primary key autoincrement, date text, employeeid integer, morning integer, afternoon integer)');
+    	tx.executeSql('CREATE TABLE IF NOT EXISTS attendance (id integer primary key autoincrement, date VARCHAR, employeeid integer, morning integer, afternoon integer)');
     	for (var i=0; i<employeeid.length;i++){
-    		//alert(flags.length);
+    		
     		tx.executeSql('INSERT INTO attendance (date , employeeid, morning, afternoon) VALUES ('+completeDate+', '+employeeid[i]+', '+ flags[i] +', 0)');
     		//tx.executeSql('INSERT INTO attendance (date , employeeid, morning, afternoon) VALUES ('+completeDate+', '+employeeid[i]+', 1, 0)');
+    		
+    		//alert(completeDate);
     	}
     	
-    	//tx.executeSql('INSERT INTO attendance (date , employeeid, morning, afternoon) VALUES (completeDate, 2, 1, 0)');
-   		// tx.executeSql('INSERT INTO attendance (date , employeeid, morning, afternoon) VALUES (completeDate, 3, 1, 0)');
+
     }
     
-   /* function testDbEntries(tx)
+    function testDbEntries(tx)
     {
-    	tx.executeSql("select * from attandance;", [], function(tx, res) {
+    var submitions = new Array();
+    	tx.executeSql("select * from attendance;", [], function(tx, res) {
      	var len = res.rows.length;
     	for (var i=0; i<len; i++){
-        	alert(employeeid);
+        	//alert(employeeid);
+        	submitions[i] = res.rows.item(i).name;
         }
-    }*/
+        alert(submitions.length);  
+    });
+    }
+    
+    function confirmDbEntries(tx)
+    {
+    submitions = new Array();
+    	tx.executeSql("select * from attendance;", [], function(tx, res) {
+     	var len = res.rows.length;
+    	for (var i=0; i<len; i++){
+        	//alert(employeeid);
+        	submitions[i] = res.rows.item(i).id +' '+ res.rows.item(i).date + ' '+ res.rows.item(i).employeeid +' '+res.rows.item(i).morning;
+        }
+        //alert(submitions.length);  
+    });
+    }
     /*function getMorningEmployees(tx){
     var date = new Date();
   	var hour = date.getHours();
