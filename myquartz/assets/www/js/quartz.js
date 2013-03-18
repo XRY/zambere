@@ -82,7 +82,7 @@
  function queryDb2()
   {
   	if(x<employees.length-1){
-  		flags[x] = "1";
+  		flags[x] = 1;
   		x++;
   		document.getElementById("demo").innerHTML=employees[x];
   	}
@@ -91,7 +91,7 @@
   
   function queryDb3(){
   	if(x<employees.length-1){
-  		flags[x] = "0";
+  		flags[x] = 0;
   		x++;
   		document.getElementById("demo").innerHTML=employees[x];
   	}
@@ -156,9 +156,10 @@
     	//document.getElementById("demo2").innerHTML=submitions[1];
     	var output;
     	for(var n = 0; n < submitions.length; n++){
-    	alert(submitions[n]);
+    	//alert(submitions[n]);
     		output += '<p>'+submitions[n]+'</p>';
     	}
+    	//output += '<a href="#0.2_page1"> Done </a>';
     	document.body.innerHTML = output;
     }
     
@@ -172,10 +173,11 @@
   		var completeDate = day +"/"+ month +"/" + year;
   		//alert(completeDate);
     	//tx.executeSql('CREATE TABLE IF NOT EXISTS attendence (id integer primary key autoincrement not null unique, date text, morning integer, afternoon integer)');
-    	tx.executeSql('CREATE TABLE IF NOT EXISTS attendance (id integer primary key autoincrement, date VARCHAR, employeeid integer, morning integer, afternoon integer)');
+    	tx.executeSql('CREATE TABLE IF NOT EXISTS attendance (id integer primary key autoincrement, date VARCHAR, employeeid integer, morning integer, afternoon integer, toolid integer)');
     	for (var i=0; i<employeeid.length;i++){
     		
-    		tx.executeSql('INSERT INTO attendance (date , employeeid, morning, afternoon) VALUES ('+completeDate+', '+employeeid[i]+', '+ flags[i] +', 0)');
+    		tx.executeSql('INSERT INTO attendance (date , employeeid, morning, afternoon) VALUES ('+completeDate+', '+employeeid[i]+', '+flags[i]+', 0)');
+    		alert(flags[i]);
     		//tx.executeSql('INSERT INTO attendance (date , employeeid, morning, afternoon) VALUES ('+completeDate+', '+employeeid[i]+', 1, 0)');
     		
     		//alert(completeDate);
@@ -193,7 +195,7 @@
         	//alert(employeeid);
         	submitions[i] = res.rows.item(i).name;
         }
-        alert(submitions.length);  
+        //alert(submitions.length);  
     });
     }
     
