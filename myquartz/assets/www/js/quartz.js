@@ -7,39 +7,40 @@
 	var flags;
 	var x = 0;
 	var submitions;
-
- 	function vibrate() {// vibrate for 50 micro seconds
+	var identity;
+	
+ 	function vibrate(){
+ 		//vibrate for 50 micro seconds
         navigator.notification.vibrate(50);
-        }
+    }
  
  	function vibrateBeep(){
  		vibrate();
  		playBeep();
- 		}
-
-    // Beep Once
-    function playBeep() {
+ 	}
+ 	
+    function playBeep(){
         navigator.notification.beep(1);
-    	}
+    }
 
   	function createDB(){
-    // var db = window.sqlitePlugin.openDatabase({name: "/mnt/sdcard/Quartz/quartz"});
+    	//var db = window.sqlitePlugin.openDatabase({name: "/mnt/sdcard/Quartz/quartz"});
 	  	var db = window.sqlitePlugin.openDatabase({name: "quartz"});
- 		}
+ 	}
 
-	function errorCB(err) {
-    	alert("Error processing SQL: "+err.code);
-		}
+	function errorCB(err){
+    	alert("Error processing SQL: " + err.code);
+	}
 
 	function getVar(name){
     	get_string = document.location.search;         
-         return_value = '';
-         
-        do { //This loop is made to catch all instances of any get variable.
-           name_index = get_string.indexOf(name + '=');
-            
-           if(name_index != -1)
-             {
+        return_value = '';
+        do 
+        {
+        	//This loop is made to catch all instances of any get variable.
+           	name_index = get_string.indexOf(name + '=');
+            if(name_index != -1)
+           {
               get_string = get_string.substr(name_index + name.length + 1, get_string.length - name_index);
              
              end_of_value = get_string.indexOf('&');
@@ -53,26 +54,25 @@
              else
                 return_value += ', ' + value;
              }
-           } while(name_index != -1)
-            
-         //Restores all the blank spaces.
-        space = return_value.indexOf('+');
+         } while(name_index != -1);
+        //Restores all the blank spaces.
+       	space = return_value.indexOf('+');
         while(space != -1)
-             { 
+        { 
              return_value = return_value.substr(0, space) + ' ' + 
              return_value.substr(space + 1, return_value.length);
 							 
              space = return_value.indexOf('+');
-             }
+        }
           
         return(return_value);        
-        } 
+    } 
           
-      function clickSave(){
+    function clickSave(){
       	 vibrate();
       	} 
  
- 	  function queryDb2(){
+ 	function queryDb2(){
   		if(x<employees.length-1){
   			flags[x] = 1;
   			x++;
@@ -89,10 +89,26 @@
   			}
   		return;
   		}
-   function queryDb(){
+   
+   	function queryDb(){
       //var db = window.sqlitePlugin.openDatabase({name: "/mnt/sdcard/Quartz/quartz"});
+       /*	var identity1 = document.getElementById("carpenter").id.onclick;
+       	var identity2 = document.getElementById("mason").id;
+       	var identity3 = document.getElementById("porter").id;
+        var identity4 = document.getElementById("builder").id;
+       	var identity5 = document.getElementById("fixer").id;
+       	
+       	//identity = identity1 || identity2 || identity3 || identity4 || identity5;
+      	if (identity1){
+      	identity = identity1;
+      	}
+      	else{
+      	identity = identity2 || identity3 || identity4 || identity5;
+      	}
+       	*/
         var db = window.sqlitePlugin.openDatabase({name: "quartz"});
-  		db.transaction(returnEmplyees, errorCB);
+  		//db.transaction(returnEmplyees, errorCB);
+  		//db.transaction(getEmployeesByCategory, errorCB);
   		document.getElementById("demo").innerHTML=employees[x];
   		flags = new Array(employees.length);
   		for(var d=0; d<flags.length; d++){
@@ -106,21 +122,7 @@
    		 alert("Error processing SQL: "+err.code);
 		}
     
-    function returnEmplyees(tx){
-    	employees = new Array();
-    	employeeid = new Array();
-		tx.executeSql("select * from workers;", [], function(tx, res) {
-     		var len = res.rows.length;
-    		for (var i=0; i<len; i++){
-        		employees[i] = res.rows.item(i).name;
-        		employeeid[i] = res.rows.item(i).id;
-        		}
-    			//alert(employees.length);  
-    		});
-    	}
-    
-    function doInsertion()
-    {
+    function doInsertion(){
     	//alert("am tyt");
     	var db = window.sqlitePlugin.openDatabase({name: "quartz"});
     	db.transaction(insertWorkers);
@@ -142,8 +144,7 @@
     	//output += '<a href="#0.2_page1"> Done </a>';
     	document.body.innerHTML = output;
     	}
-    
-    
+      
     function confirmDbEntries(tx){
     	submitions = new Array();
     	tx.executeSql("select * from attendance;", [], function(tx, res) {
@@ -155,10 +156,36 @@
         	});
         }
     
-    	function returnEmplyees(tx){
+    function returnEmplyees(tx){
     		employees = new Array();
     		employeeid = new Array();
-			tx.executeSql("select * from workers;", [], function(tx, res) {
+			tx.executeSql("select * from workers where catid=1;", [], function(tx, res) {
+     			var len = res.rows.length;
+    			for (var i=0; i<len; i++){
+        			employees[i] = res.rows.item(i).name;
+        			employeeid[i] = res.rows.item(i).id;
+        			}
+        		//alert(submitions.length);  
+    			});
+    		}
+    		
+    function returnEmplyees2(tx){
+    		employees = new Array();
+    		employeeid = new Array();
+			tx.executeSql("select * from workers where catid=2;", [], function(tx, res) {
+     			var len = res.rows.length;
+    			for (var i=0; i<len; i++){
+        			employees[i] = res.rows.item(i).name;
+        			employeeid[i] = res.rows.item(i).id;
+        			}
+        		//alert(submitions.length);  
+    			});
+    		}
+    		
+    function returnEmplyees3(tx){
+    		employees = new Array();
+    		employeeid = new Array();
+			tx.executeSql("select * from workers where catid=3;", [], function(tx, res) {
      			var len = res.rows.length;
     			for (var i=0; i<len; i++){
         			employees[i] = res.rows.item(i).name;
@@ -201,4 +228,30 @@
        		employeeid[i] = res.rows.item(i).employeeid;
        	}
     }*/
+    
+    
+    //New functions
+    function getEmployeesByCategory(categoryId){
+    	alert("Category ID is: " + categoryId);
+    	employees = new Array();
+		employeeid = new Array();
+		var db = window.sqlitePlugin.openDatabase({name: "quartz"});
+		return function(tx){
+			tx.executeSql("select * from workers where catid="+ categoryId + ";", [], function(tx, res) 
+			{
+	 			var len = res.rows.length;
+				for (var i=0; i<len; i++)
+				{
+	    			employees[i] = res.rows.item(i).name;
+	    			employeeid[i] = res.rows.item(i).id;
+	    		}
+			}), errorCB);
+		}
+		
+		db.transaction(function (tx){
+			tx.executeSql("select * from workers where catid = " + categoryId + ";", [], function(tx, res){
+			});
+		});
+		alert("Total employees in category is: " + employees.length);
+  	}
  
