@@ -7,14 +7,22 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <title>
         </title>
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-        <link rel="stylesheet" href="my.css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+        <link rel="stylesheet"  href= "css/jquery.mobile-1.2.0.min.css" />
+        <script src="js/jquery.min.js">
+        
         </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.js">
+        
+        <script src="js/jquery.mobile-1.2.0.min.js">
         </script>
-        <script src="my.js">
-        </script>
+ <script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
+  <script type="text/javascript" charset="utf-8" src="SQLitePlugin.js"></script>
+ <script src="js/quartz.js"></script>
+   
+
+        <script>
+   
+
+        <script>
         <!-- User-generated css -->
         <style>
         </style>
@@ -35,28 +43,18 @@
         <!-- Home -->
         <div data-role="page" id="page1">
             <div data-role="content">
-                <ul id="roll call" data-role="listview" data-divider-theme="b" data-inset="true">
+                <ul data-role="listview" data-divider-theme="b" data-inset="true">
                     <li data-role="list-divider" role="heading">
-                        Roll Call
+                        Roll Call Time
                     </li>
                     <li data-theme="a">
-                        <a href="rollcall3.html" data-transition="slide">
-                            Daily Roll Call
+                        <a href="rollcall3.html" data-transition="slide" onclick="">
+                            Morning
                         </a>
                     </li>
                     <li data-theme="a">
                         <a href="#page1" data-transition="slide">
-                            View Summary
-                        </a>
-                    </li>
-                    <li data-theme="a">
-                        <a href="#page1" data-transition="slide">
-                            Search
-                        </a>
-                    </li>
-                    <li data-theme="a">
-                        <a href="#page1" data-transition="slide">
-                            Half Day
+                            Evening
                         </a>
                     </li>
                 </ul>

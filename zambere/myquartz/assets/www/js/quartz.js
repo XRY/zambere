@@ -151,7 +151,13 @@
      		var len = res.rows.length;
     		for (var i=0; i<len; i++){
         		//alert(employeeid);
-        		submitions[i] = res.rows.item(i).id +' '+ res.rows.item(i).date + ' '+ res.rows.item(i).employeeid +' '+res.rows.item(i).morning;
+        		var empId = res.rows.item(i).employeeid;
+        		var empName;
+        		tx.executeSql("select * from workers where employeeid="+empId+";", [], function(tx, res) {
+        			empName = res.rows.item(i).name;
+        		});
+        		//submitions[i] = res.rows.item(i).id +' '+ res.rows.item(i).date + ' '+ res.rows.item(i).employeeid +' '+res.rows.item(i).morning;
+        		submitions[i] = empName;
         		}
         	});
         }
@@ -159,6 +165,7 @@
     function returnEmplyees(tx){
     		employees = new Array();
     		employeeid = new Array();
+<<<<<<< HEAD:myquartz/assets/www/js/quartz.js
 			tx.executeSql("select * from workers where catid=1;", [], function(tx, res) {
      			var len = res.rows.length;
     			for (var i=0; i<len; i++){
@@ -193,6 +200,33 @@
         			}
         		//alert(submitions.length);  
     			});
+=======
+    		
+    		var date = new Date();
+  			var hour = date.getHours();
+  			//alert(hour);
+  			
+  			//if(hour > 13){
+				tx.executeSql("select * from workers;", [], function(tx, res) {
+     				var len = res.rows.length;
+    				for (var i=0; i<len; i++){
+        				employees[i] = res.rows.item(i).name;
+        				employeeid[i] = res.rows.item(i).id;
+        				}
+        			
+    				});
+    			//}
+    		/*else {
+    				tx.executeSql("select * from attendance where morning=1;", [], function(tx, res) {
+     				var len = res.rows.length;
+    				for (var i=0; i<len; i++){
+        				employees[i] = res.rows.item(i).name;
+        				employeeid[i] = res.rows.item(i).id;
+        				}
+        			
+    				});
+    			}*/
+>>>>>>> origin/master:zambere/myquartz/assets/www/js/quartz.js
     		}
     
     function insertWorkers(tx){
@@ -228,6 +262,7 @@
        		employeeid[i] = res.rows.item(i).employeeid;
        	}
     }*/
+<<<<<<< HEAD:myquartz/assets/www/js/quartz.js
     
     
     //New functions
@@ -254,4 +289,50 @@
 		});
 		alert("Total employees in category is: " + employees.length);
   	}
+=======
+ 
+ 
+ //New functions - Zigitch
+ /**
+  * 
+  * @param {} CategoryID - the ID of the category whose employees to rollcall
+  * @returns {}::: null,  simply initializes the list of employees and employeeIDs 
+  * using their respective arrays
+  */
+ function getEmployeesByCategory(CategoryID){
+ 	//alert(CategoryID);
+ 	var db = window.sqlitePlugin.openDatabase({name: "quartz"});
+ 	employees = new Array();
+    employeeid = new Array();
+    db.transaction(function(tx){
+    	//Check point 1::reached
+    	//alert("Before Execution");
+    	tx.executeSql("select * from workers where catid = " + CategoryID + ";", [], function(tx, results){
+    		var len = results.rows.length;
+    		for(var i = 0; i<len;i++){
+    			employees[i] = results.rows.item(i).name;
+    			employeeid[i] = results.rows.item(i).id;
+    		}
+    		//Check point 3::reached
+    		//alert("Total Employees Found: " + employees.length + "\nTotal Employee IDS are: " + employeeid.length);
+    	});
+    	//Check point 2::reached
+    	//alert("After Execution");
+    });
+ 	return;
+ }
+ 
+ /**
+  * 
+  * @returns {}::: null,  simply picks the name of the first employee from the initialized array of employees
+  * and gets the rollcall ready 
+  */
+ function LoadEmployeesByCategory(){
+ 	document.getElementById("demo").innerHTML=employees[x];
+ 	flags = new Array(employees.length);
+ 	//alert("Done Initializing fields....\nGetting ready to proceed.");
+ 	return;
+ }
+ 
+>>>>>>> origin/master:zambere/myquartz/assets/www/js/quartz.js
  
