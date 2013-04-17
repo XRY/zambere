@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta charset="utf-8" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <title>Quartz</title>
+        <link type="text/css" rel="stylesheet"  href= "css/jquery.mobile-1.2.0.min.css" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
+ 		<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
+  		<script type="text/javascript" charset="utf-8" src="SQLitePlugin.js"></script>
+ 		<script type="text/javascript" src="js/quartz.js"></script>    
+	</head>
+	<body style="font:consolas">
+		<div id="page1" style="height:100%">
+            <div>
+            	<!-- Javascript function that replaces the onload event -->
+            	<script type="text/javascript">
+            		LoadEditPageData();
+            	</script>
+                <!-- Waiting for Javascript function to replace onLoad Event -->
+                <label>Employee Name: </label><label id="empNameLabel" style="font-size:24px; text-align:right"></label><br />
+            	<label style="font-size:18px"><b>Change Presence Status</b></label><br />
+            	<label style="font-size:12px">Current Status:</label><label id="currentStatus"></label><br />
+            	<a data-role="button" data-inline="true" data-theme="a" data-icon="plus" data-iconpos="left" onclick="SaveNewAttendanceData(1);">Present</a>
+                <a data-role="button" data-inline="true" data-theme="b" data-icon="minus" data-iconpos="left" onclick="SaveNewAttendanceData(0);">Absent</a>
+                <br />
+                <br />
+                <label for="selectmenu1" style="font-size:18px"><b>Change Tool</b></label><br />
+                <label style="font-size:12px">Current Tool:</label><label id="currentTool"></label><br />
+                <select name="tools" data-theme="a" id="selOpt">
+                    <option value="selectValue" >---Select a Tool---</option>
+                        <option value="space">Spade</option>
+                        <option value="trowel">Trowel</option>
+                        <option value="wb">Wheel Burrow</option>
+                        <option value="hacksaw">Hack saw</option>
+                </select>
+                <table width="100%">
+                	<tr>
+                		<td><a id="return_btn" data-role="button" data-theme="a" href="submission.html">Cancel</a></td>
+                		<td><a id="return_btn" data-role="button" data-theme="b" href="submission.html">Save Changes</a></td>
+                	</tr>
+                </table>
+            </div>
+            <div>
+                <h3>Xrystalgenius</h3>
+            </div>
+        </div>
+	</body>
+</html>

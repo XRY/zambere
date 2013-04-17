@@ -17,14 +17,12 @@
         <!-- Home -->
         <div id="page1">
             <div>
-                <div style="width: 100px; height: 50px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
-                    <img src="" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
-                </div>
                 <h3 id="demo"><script type="text/javascript">LoadEmployeesByCategory();</script></h3>
                 <div data-role="content">
                 <div data-role="fieldcontain">
                     <label for="selectmenu1">Tools:</label>
-                    <select name="tools" data-theme="a">
+                    <select name="tools" data-theme="a" id="selid">
+                    	<option value="selectValue">---Select a Tool---</option>
                         <option value="space">Spade</option>
                         <option value="trowel">Trowel</option>
                         <option value="wb">Wheel Burrow</option>
@@ -33,9 +31,10 @@
                 </div>
             	</div>
                 <!-- Present and Absent Buttons -->
-                <a data-role="button" data-inline="true" data-theme="a" href="#" data-icon="plus" data-iconpos="left" onclick="queryDb2();">Present</a>
-                <a data-role="button" data-inline="true" data-theme="b" href="#" data-icon="minus" data-iconpos="left" onclick="queryDb3();">Absent</a>
-                <a id="return_btn" data-role="button" data-theme="d" href="submittion.html" onclick="doInsertion()">Done</a>
+                <a data-role="button" data-inline="true" data-theme="a" href="#" data-icon="plus" data-iconpos="left" onclick="AddEmployeeAttendance(1);">Present</a>
+                <a data-role="button" data-inline="true" data-theme="b" href="#" data-icon="minus" data-iconpos="left" onclick="AddEmployeeAttendance(0);">Absent</a>
+            	 <a id="return_btn" data-role="button" data-theme="d" href="submission.html" onclick="checkStatus();">Proceed</a>
+            	
             </div>
             <div>
                 <h3>Xrystalgenius</h3>

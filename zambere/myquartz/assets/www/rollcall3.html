@@ -13,14 +13,6 @@
  		<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
   		<script type="text/javascript" charset="utf-8" src="SQLitePlugin.js"></script>
  		<script type="text/javascript" src="js/quartz.js"></script>
-        <script type="text/javascript">
-            try {
-    			$(function() {
-				});
-			}catch (error){
-    			console.error("Your javascript has an error: " + error);
-  			}
-        </script>
     </head>
     <body>
         <!-- Home -->
@@ -28,6 +20,9 @@
             <div data-role="content">
                 <ul data-role="listview" data-divider-theme="b" data-inset="true" >
                     <li data-role="list-divider" role="heading">Category</li>
+                    <script>
+                    
+                    </script>
                     <li data-theme="a"><a href="rollcall4.html" data-transition="fade" onclick="getEmployeesByCategory(1);">Capenters</a></li>
                     <li data-theme="a"><a href="rollcall4.html" data-transition="fade" onclick="getEmployeesByCategory(2);">Masons</a></li>
                     <li data-theme="a"><a href="rollcall4.html" data-transition="fade" onclick="getEmployeesByCategory(3);">Porters</a></li>

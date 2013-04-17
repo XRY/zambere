@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" content="" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <title>Roll Call Confirmation</title>
+        <link type="text/css" rel="stylesheet"  href= "css/jquery.mobile-1.2.0.min.css" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
+ 		<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
+  		<script type="text/javascript" charset="utf-8" src="SQLitePlugin.js"></script>
+ 		<script type="text/javascript" src="js/quartz.js"></script>
+    </head>
+    <body style="font:consolas">
+    	<script type="text/javascript">
+    		GenerateRollCallTable();
+    	</script>
+    	<div>
+    		<div>
+    			<p style="font-size:18px">ROLL CALL CONFIRMATION SHEET</p>
+    			<table id="rollcallTable" width="100%">
+    				<thead style="font-size:14px">
+	    				<tr>
+	    					<th>NAME</th>
+	    					<th>TOOL ASSIGNED</th>
+	    					<th>PRESENT/ABSENT</th>
+	    					<th>CHANGE STATUS</th>
+	    				</tr>
+    				</thead>
+    				<tbody style="font-size:12px">
+    				</tbody>
+    			</table>
+    			<a data-role="button" data-theme="b" href="#" onclick="SaveRollCall();">Save Records</a>
+    			
+    			<!-- Function to be attached to Save Records Button: SaveRollCall(); -->
+    		</div>
+    		<div>
+    			<h3>Xrystalgenius</h3>
+    		</div>
+    	</div>
+</body>
+</html>
